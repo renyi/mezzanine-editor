@@ -35,7 +35,7 @@ class EditorBlogPostAdmin(BlogPostAdmin):
         """
         editor_mode = getattr(settings, "MEZZANINE_EDITOR_ENABLED", True)
 
-        if editor_mode and not change:
+        if editor_mode and obj.status == CONTENT_STATUS_PUBLISHED:
             editor_name = getattr(settings, "MEZZANINE_EDITOR_GROUPNAME", "Editor")
             editor_super = getattr(settings, "MEZZANINE_EDITOR_SUPER", False)
 
@@ -43,9 +43,8 @@ class EditorBlogPostAdmin(BlogPostAdmin):
             user_groups = request.user.groups.all()
             super_editor = request.user.is_superuser and editor_super
 
-            if obj.status == CONTENT_STATUS_PUBLISHED:
-                if not (super_editor or editor in user_groups):
-                    obj.status = CONTENT_STATUS_DRAFT
+            if not (super_editor or editor in user_groups):
+                obj.status = CONTENT_STATUS_DRAFT
 
         obj.save()
 
