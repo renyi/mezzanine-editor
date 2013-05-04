@@ -15,7 +15,7 @@ Installation
 ```
     INSTALLED_APPS = (
         "...",
-        "mezzanine_editor",    
+        "mezzanine_editor",
     )
 ```
 
@@ -23,7 +23,7 @@ Settings (Optional)
 ---
 MEZZANINE_EDITOR_ENABLED
 
-```python
+```
 Default: True
 Description: Toggles editor workflow.
 ```
@@ -31,7 +31,7 @@ Description: Toggles editor workflow.
 
 MEZZANINE_EDITOR_SUPER
 
-```python
+```
    Default: False
    Description: Treat superuser as an editor.
 ```
@@ -39,7 +39,7 @@ MEZZANINE_EDITOR_SUPER
 
 MEZZANINE_EDITOR_GROUPNAME
 
-```python
+```
    Default: "Editor"
    Description: Name for editor group.
 ```
