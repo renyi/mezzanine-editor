@@ -1,4 +1,5 @@
 from django.utils.translation import ugettext_lazy as _
+from django.contrib import messages
 from django.contrib import admin
 from django.contrib.auth.models import Group
 from mezzanine.conf import settings
@@ -45,6 +46,7 @@ class EditorBlogPostAdmin(BlogPostAdmin):
 
             if not (super_editor or editor in user_groups):
                 obj.status = CONTENT_STATUS_DRAFT
+                messages.error(request, _('You do not have permission to publish content.'))
 
         obj.save()
 
