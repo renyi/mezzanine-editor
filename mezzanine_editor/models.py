@@ -8,5 +8,8 @@ from mezzanine.blog.models import BlogPost
 
 @receiver(post_syncdb, sender=BlogPost)
 def create_default_editor_group(sender, **kwargs):
-    editor_name = getattr(settings, "MEZZANINE_EDITOR_GROUPNAME", "Editor")
-    editor, created = Group.objects.get_or_create(name=editor_name)
+    editor_mode = getattr(settings, "MEZZANINE_EDITOR_ENABLED", True)
+
+    if editor_mode:
+        editor_name = getattr(settings, "MEZZANINE_EDITOR_GROUPNAME", "Editor")
+        editor, created = Group.objects.get_or_create(name=editor_name)
